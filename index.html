@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommendation System</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Georgia';
+            background: #f4f7f3;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Main Container */
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        /* Heading Styling */
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        /* Form Styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Label Styling */
+        label {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* Select Dropdown Styling */
+        select {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+            transition: 0.3s ease;
+        }
+
+        select:focus {
+            border-color: #ec9a67;
+        }
+
+        /* Submit Button Styling */
+        button {
+            background-color: #ec9a67;
+            color: #fff;
+            font-size: 1.1rem;
+            border: none;
+            padding: 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #ec9a67;
+        }
+
+        /* Recommended Books List */
+        .recommended-books {
+            margin-top: 30px;
+        }
+
+        .recommended-books ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .recommended-books li {
+            background-color:#ec9a67 ;
+            color:#f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            transition: 0.3s ease;
+        }
+
+        .recommended-books li:hover {
+            background-color: #ec9a67;
+            color:#ec9a67;
+            transform: translateX(5px);
+        }
+
+        /* Mobile Responsive Styling */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            button {
+                padding: 12px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book Recommendation System</h1>
+        <form method="POST" action="/recommend">
+            <label for="genre">Choose Genre:</label>
+            <select name="genre" id="genre">
+                <option value="fiction">Fiction</option>
+                <option value="sci-fi">Sci-Fi</option>
+                <option value="horror">Horror</option>
+                <option value="comedy">Comedy</option>
+                <option value="action">Action</option>
+                <option value="thriller">Thriller</option>
+                <option value="biography">Biography</option>
+                <option value="autobiography">Autobiography</option>
+            </select>
+
+            <label for="age_group">Choose Age Group:</label>
+            <select name="age_group" id="age_group">
+                <option value="children">Children</option>
+                <option value="teen">Teen</option>
+                <option value="adult">Adult</option>
+            </select>
+
+
+
+            <button type="submit">Get Recommendations</button>
+        </form>
+
+        {% if books %}
+        <div class="recommended-books">
+            <h2>Recommended Books:</h2>
+            <ul>
+                {% for book in books %}
+                    <li>{{ book }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
